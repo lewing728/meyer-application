@@ -11,7 +11,8 @@ Once Node is installed you'll be able to run the project pretty simply.
 
 1. Click the Clone or download button
 2. Copy the repo link that appears
-3. In a command prompt type `git clone https://github.com/lewing728/meyer-application.git`
+4. Go to the folder on your machine you wish to clone the project
+3. In a command prompt type `git clone https://github.com/lewing728/meyer-application.git .`
 
 ## Step 2 - Install the packages
 
