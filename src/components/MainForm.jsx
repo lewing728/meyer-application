@@ -20,29 +20,8 @@ class MainForm extends Component {
         resume: '',
         how_hear: [],
         how_hear_list: '',
-        workHistory1_name: '',
-        workHistory1_title: '',
-        workHistory1_start_date: '',
-        workHistory1_end_date: '',
-        workHistory1_duties: '',
-        workHistory2_name: '',
-        workHistory2_title: '',
-        workHistory2_start_date: '',
-        workHistory2_end_date: '',
-        workHistory2_duties: '',
-        education1_name: '',
-        education1_gpa: '',
-        education1_major: '',
-        education1_minor: '',
-        education1_graduate: '',
-        education1_end_date: '',
-        education2_name: '',
-        education2_gpa: '',
-        education2_major: '',
-        education2_minor: '',
-        education2_start_date: '',
-        education2_end_date: '',
-        education2_graduate: '',
+        workHistory: [],
+        educationHistory: [],
     }
     
 
@@ -82,23 +61,42 @@ class MainForm extends Component {
         this.setState({how_hear_list: how_list});
     }
     
-    getHearMore = () => {
-        let how_list = '';
-        
-        for(let i=0, len = this.state.how_hear.length; i < len; i++) {
-            if(len !== 0) {
-                how_list = how_list + ', ';
-            }
-            how_list = how_list + this.state.how_hear[i];
-        }
-        this.setState({how_hear_list: how_list});
-        
+    handleChangeWorkHistory = (e) => {
+        let workHistories = [...this.state.workHistory];
+        workHistories[e.target.getAttribute('dataid')][e.target.getAttribute('dataname')] = e.target.value;
+        this.setState({workHistories}, () => console.log(this.state.workHistory));
+
     }
+
+    handleChangeEduHistory = (e) => {
+        let educationHistories = [...this.state.educationHistory];
+        educationHistories[e.target.getAttribute('dataid')][e.target.getAttribute('dataname')] = e.target.value;
+        this.setState({educationHistories}, () => console.log(this.state.educationHistory));
+    }
+    
+    
+    handleSubmitDefault = (e) => {
+        e.preventDefault();
+    }
+
+    
+    addNewHistory = (e) => {
+        this.setState((prevState) => ({
+            workHistory: [...prevState.workHistory, {name: "", title: ""}],
+        }));
+    }
+
+    addNewEducation = (e) => {
+        this.setState((prevState) => ({
+            educationHistory: [...prevState.educationHistory, {name: "", gpa: ""}],
+        }));
+    }
+    
     
     render() {
         const {currentStep} = this.state;
-        const { firstName, lastName, email, phone, address, address2, city, zip, us_state, resume, how_hear, how_hear_list, workHistory1_name, workHistory1_title, workHistory1_start_date, workHistory1_end_date, workHistory1_duties, workHistory2_name, workHistory2_title, workHistory2_start_date, workHistory2_end_date, workHistory2_duties, education1_name, education1_gpa, education1_major, education1_minor, education1_end_date, education1_graduate, education2_name, education2_gpa, education2_major, education2_minor, education2_end_date, education2_graduate } = this.state;
-        const values = { firstName, lastName, email, phone, address, address2, city, zip, us_state, resume, how_hear, how_hear_list, workHistory1_name, workHistory1_title, workHistory1_start_date, workHistory1_end_date, workHistory1_duties, workHistory2_name, workHistory2_title, workHistory2_start_date, workHistory2_end_date, workHistory2_duties, education1_name, education1_gpa, education1_major, education1_minor, education1_end_date, education1_graduate, education2_name, education2_gpa, education2_major, education2_minor, education2_end_date, education2_graduate  };
+        const { firstName, lastName, email, phone, address, address2, city, zip, us_state, resume, how_hear, how_hear_list,  workHistory, educationHistory } = this.state;
+        const values = { firstName, lastName, email, phone, address, address2, city, zip, us_state, resume, how_hear, how_hear_list, workHistory, educationHistory };
         switch(currentStep) {
             case 1:
                 return <UserDetails
@@ -112,6 +110,9 @@ class MainForm extends Component {
                            nextStep = {this.nextStep}
                            prevStep = {this.prevStep}
                            handleChange = {this.handleChange}
+                           addNewHistory = {this.addNewHistory}
+                           handleSubmitWorkHistory = {this.handleSubmitDefault}
+                           handleChangeWorkHistory = {this.handleChangeWorkHistory}
                            values={values}
                         />
             case 3:
@@ -119,6 +120,9 @@ class MainForm extends Component {
                            nextStep = {this.nextStep}
                            prevStep = {this.prevStep}
                            handleChange = {this.handleChange}
+                           addNewEducation = {this.addNewEducation}
+                           handleSubmitEduHistory = {this.handleSubmitDefault}
+                           handleChangeEduHistory = {this.handleChangeEduHistory}
                            values={values}
                         />
             case 4:

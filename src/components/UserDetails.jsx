@@ -19,9 +19,15 @@ class UserDetails extends Component {
         const {values} = this.props;
         return (
             <div>
-                
-                <h1 className="text-center">Personal Details</h1>
-                <CardText className="text-center">Fill in the appropriate fields</CardText>
+                <div class="mb-5">
+                    <h1 className="text-center">Application</h1>
+                    <CardText className="text-center">You are applying for the Creative Chef position. Fill all the appropriate information and you will be shown a page at the end that will list all the information you submitted. If it is all correct then click Confirm to send the information. Good luck!</CardText>
+                </div>
+                <hr />
+                <div class="pt-3 pb-5">
+                    <h2 className="h1 text-center">Personal Details</h2>                
+                    <CardText className="text-center">Fill in the appropriate fields</CardText>
+                </div>
                 <div className="p-2 border mb-2">
                     Step 1 out of 4
 

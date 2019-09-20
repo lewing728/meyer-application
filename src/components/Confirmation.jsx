@@ -13,7 +13,7 @@ class Confirmation extends Component {
     }
     
     render() {
-        const {values: {firstName, lastName, email, phone, address, address2, city, zip, us_state, how_hear_list, workHistory1_name, workHistory1_title, workHistory1_start_date, workHistory1_end_date, workHistory1_duties, workHistory2_name, workHistory2_title, workHistory2_start_date, workHistory2_end_date, workHistory2_duties, education1_name, education1_gpa, education1_major, education1_minor, education1_end_date, education1_graduate, education2_name, education2_gpa, education2_major, education2_minor, education2_end_date, education2_graduate }} = this.props;
+        const {values: {firstName, lastName, email, phone, address, address2, city, zip, us_state, how_hear_list, workHistory, educationHistory }} = this.props;
         return(
             <div>
                 <h1 className="text-center">{firstName} {lastName}<br />Please Confirm your Details</h1>
@@ -25,8 +25,8 @@ class Confirmation extends Component {
                     </div>
                 </div>
                 <Row>
-                    <Col xs="12" sm="6" className="mb-5">
-                        <Card className="bg-white no-box-shadow h-100">
+                    <Col xs="12" className="mb-5">
+                        <Card className="bg-white no-box-shadow">
                             <CardBody>
                                 <h2 className="text-center text-base">Personal Details</h2>
                                 <p>
@@ -40,59 +40,64 @@ class Confirmation extends Component {
                                 </p>
                                 
                                 <p>
-                                    How did you hear about us? <br />
+                                    <strong>How did you hear about us?</strong> <br />
                                     {how_hear_list}
-                                </p>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col xs="12" sm="6" className="mb-5">
-                        <Card className="bg-white no-box-shadow h-100">
-                            <CardBody>
-                                <h2 className="text-center text-base">Work History Details</h2>
-                                <h3>First Work History</h3>
-                                <p>
-                                    <strong>Company Name:</strong> {workHistory1_name}<br />
-                                    <strong>Title:</strong> {workHistory1_title}<br />
-                                    <strong>Dates Worked:</strong> {workHistory1_start_date} to {workHistory1_end_date}<br />
-                                    <strong>Duties Included:</strong><br /> {workHistory1_duties}
-                                </p>
-                                <hr />
-                                <h3>Second Work History</h3>
-                                <p>
-                                    <strong>Company Name:</strong> {workHistory2_name}<br />
-                                    <strong>Title:</strong> {workHistory2_title}<br />
-                                    <strong>Dates Worked:</strong> {workHistory2_start_date} to {workHistory2_end_date}<br />
-                                    <strong>Duties Included:</strong><br /> {workHistory2_duties}
                                 </p>
                             </CardBody>
                         </Card>
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs="12" sm="6" className="mb-5">
+                    <Col xs="12" className="mb-5">
+                        <Card className="bg-white no-box-shadow">
+                            <CardBody>
+                                <h2 className="text-center text-base">Work History Details</h2>
+                                {
+                                    workHistory.map((val, idx)=> {
+                                        return(
+                                            <div key={idx}>
+                                                <h3>Work History #{idx + 1}</h3>
+                                                <p>
+                                                    <strong>Company Name: </strong> {workHistory[idx]['name']}<br />
+                                                    <strong>Title: </strong> {workHistory[idx]['title']}<br />
+                                                    <strong>Employed: </strong> {workHistory[idx]['start_date']} to {workHistory[idx]['end_date']}<br />
+                                                    <strong>Duties: </strong><br />
+                                                    {workHistory[idx]['duties']}
+                                                </p>
+                                                <hr />
+                                            </div>
+
+                                        )
+                                    })    
+                                }
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs="12" className="mb-5">
                         <Card className="bg-white no-box-shadow">
                             <CardBody>
                                 <h2 className="text-center text-base">Education History Details</h2>
-                                <h3>Highest Education</h3>
-                                <p>
-                                    <strong>School Name:</strong> {education1_name}<br />
-                                    <strong>GPA:</strong> {education1_gpa}<br />
-                                    <strong>Major:</strong> {education1_major}<br />
-                                    <strong>Minor:</strong> {education1_minor}<br />
-                                    <strong>Graduated?:</strong> {education1_graduate}<br />
-                                    <strong>Date graduated:</strong> {education1_end_date}<br />
-                                </p>
-                                <hr />
-                                <h3>Next Highest Education</h3>
-                                <p>
-                                    <strong>School Name:</strong> {education2_name}<br />
-                                    <strong>GPA:</strong> {education2_gpa}<br />
-                                    <strong>Major:</strong> {education2_major}<br />
-                                    <strong>Minor:</strong> {education2_minor}<br />
-                                    <strong>Graduated?:</strong> {education2_graduate}<br />
-                                    <strong>Date graduated:</strong> {education2_end_date}<br />
-                                </p>                                
+                                {
+                                    educationHistory.map((val, idx)=> {
+                                        return(
+                                            <div key={idx}>
+                                                <h3>Education #{idx + 1}</h3>
+                                                <p>
+                                                    <strong>School Name:</strong> {educationHistory[idx]['name']}<br />
+                                                    <strong>GPA:</strong> {educationHistory[idx]['gpa']}<br />
+                                                    <strong>Major:</strong> {educationHistory[idx]['major']}<br />
+                                                    <strong>Minor:</strong> {educationHistory[idx]['minor']}<br />
+                                                    <strong>Graduated?:</strong> {educationHistory[idx]['graduate']}<br />
+                                                    <strong>Date graduated:</strong> {educationHistory[idx]['end_date']}<br />
+                                                </p>
+                                                <hr />
+                                            </div>
+
+                                        )
+                                    })    
+                                }
                             </CardBody>
                         </Card>
                     </Col>
