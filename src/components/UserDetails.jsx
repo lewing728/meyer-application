@@ -5,10 +5,6 @@ import { faQuestion } from '@fortawesome/free-solid-svg-icons'
 import { ValidationForm, TextInput } from 'react-bootstrap4-form-validation';
 
 class UserDetails extends Component {
-    state = {
-        firstNameError: '',
-        lastNameError: ''
-    }
 
     saveAndContinue = (e) => {
         e.preventDefault();
@@ -17,9 +13,8 @@ class UserDetails extends Component {
     
     handleErrorSubmit = (e, formData, errorInputs) => {
         console.error(errorInputs)
-        
     }
-    
+        
     render() {
         const {values} = this.props;
         return (
@@ -104,6 +99,20 @@ class UserDetails extends Component {
                             </Row>
                         </Col>
                     </Row> 
+                    <Row>
+                        <Col xs="12">
+                                <FormGroup>
+                                    <Label for="how_hear">How did you hear about us?</Label>
+                                    <Input type="select" name="how_hear" id="how_hear" multiple onChange={this.props.handleChangeMulti} defaultValue={values.how_hear} >
+                                        <option value="Indeed">Indeed</option>
+                                        <option value="Current Employee">Current Employee</option>
+                                        <option value="TV Ad">TV Ad</option>
+                                        <option value="Monster">Monster</option>
+                                        <option value="Google">Google</option>
+                                    </Input>
+                            </FormGroup>
+                        </Col>
+                    </Row>
                     <hr />
                     <Row>
                         <Col sm="12" sm="6">

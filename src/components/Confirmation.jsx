@@ -13,7 +13,7 @@ class Confirmation extends Component {
     }
     
     render() {
-        const {values: {firstName, lastName, email, phone, address, address2, city, zip, us_state, workHistory1_name, workHistory1_title, workHistory1_start_date, workHistory1_end_date, workHistory1_duties, workHistory2_name, workHistory2_title, workHistory2_start_date, workHistory2_end_date, workHistory2_duties, education1_name, education1_gpa, education1_major, education1_minor, education1_end_date, education1_graduate, education2_name, education2_gpa, education2_major, education2_minor, education2_end_date, education2_graduate }} = this.props;
+        const {values: {firstName, lastName, email, phone, address, address2, city, zip, us_state, how_hear, how_hear_list, workHistory1_name, workHistory1_title, workHistory1_start_date, workHistory1_end_date, workHistory1_duties, workHistory2_name, workHistory2_title, workHistory2_start_date, workHistory2_end_date, workHistory2_duties, education1_name, education1_gpa, education1_major, education1_minor, education1_end_date, education1_graduate, education2_name, education2_gpa, education2_major, education2_minor, education2_end_date, education2_graduate }} = this.props;
         return(
             <div>
                 <h1 className="text-center">{firstName} {lastName}<br />Please Confirm your Details</h1>
@@ -37,7 +37,11 @@ class Confirmation extends Component {
                                     {address}<br />
                                     {address2}<br />
                                     {city}, {us_state} {zip}
-                                    
+                                </p>
+                                
+                                <p>
+                                    How did you hear about us? <br />
+                                    {how_hear_list}
                                 </p>
                             </CardBody>
                         </Card>
