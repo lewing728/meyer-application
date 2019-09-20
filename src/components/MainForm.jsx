@@ -86,7 +86,7 @@ class MainForm extends Component {
         let how_list = '';
         
         for(let i=0, len = this.state.how_hear.length; i < len; i++) {
-            if(len != 0) {
+            if(len !== 0) {
                 how_list = how_list + ', ';
             }
             how_list = how_list + this.state.how_hear[i];

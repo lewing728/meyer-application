@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, CardText, Col, Container, Form, FormGroup, Label, Input, Row, UncontrolledTooltip } from 'reactstrap';
+import { Button, CardText, Col, FormGroup, Label, Input, Row, UncontrolledTooltip } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestion } from '@fortawesome/free-solid-svg-icons'
 import { ValidationForm, TextInput } from 'react-bootstrap4-form-validation';
